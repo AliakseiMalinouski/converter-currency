@@ -7,6 +7,8 @@ import { observer } from "mobx-react-lite";
 import { Translate } from "./Translate";
 import { converterEvents } from "@/events";
 import { Snack } from "./Snack";
+import styles from './Header.module.css';
+import { Logo } from "./Logo";
 
 export const Header = observer (() =>  {
 
@@ -37,13 +39,11 @@ export const Header = observer (() =>  {
     else {
         return (
             <>
-            <header>
-                <div className='Container'>
-                    <Translate/>
-                    <div>
-                        {
-                            t('status')
-                        }
+            <header className={styles.Header}>
+                <div className='Container' style={{height: '100%'}}>
+                    <div className={styles.HeaderContent}>
+                        <Logo src="https://i.ibb.co/GcPksm5/money-exchange.png" alt="Logo"/>
+                        <Translate/>
                     </div>
                 </div>
             </header>

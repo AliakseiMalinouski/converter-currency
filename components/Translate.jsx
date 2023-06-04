@@ -11,10 +11,10 @@ export const Translate = memo(() => {
     const [languages, setLanguages] = useState(translate.languages);
 
     useEffect(() => {
-        if(!languages.length) {
+        if(languages.length === 0) {
             translate.loadLanguages();
             setLanguages(toJS(translate.languages));
-        } 
+        }
     }, [languages]);
 
     const chooseLanguage = (language) => {
@@ -22,7 +22,7 @@ export const Translate = memo(() => {
     }
 
   return (
-    <FormControl sx={{ minWidth: 120 }}  size="small">
+    <FormControl sx={{ minWidth: 120, color: '#fff' }}  size="small">
         <InputLabel id="demo-select-small-label">lng</InputLabel>
         <Select labelId="demo-select-small-label" id="demo-select-small">
             {
