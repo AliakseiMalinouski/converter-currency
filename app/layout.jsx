@@ -1,6 +1,6 @@
 import './globals.css';
 import '../i18next/config';
-import Header from '../components/Header';
+import {Header} from '../components/Header';
 
 import { Montserrat } from 'next/font/google';
 
