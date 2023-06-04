@@ -2,7 +2,6 @@
 
 import { memo, } from "react";
 import { MenuItem, FormControl, InputLabel, Select } from "@mui/material";
-import { toJS } from "mobx";
 import { converterEvents } from "@/events";
 
 export const Translate = memo(({languages}) => {
