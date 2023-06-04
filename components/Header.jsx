@@ -9,6 +9,8 @@ import { converterEvents } from "@/events";
 import { Snack } from "./Snack";
 import styles from './Header.module.css';
 import { Logo } from "./Logo";
+import translate from "@/mobx/store/translate";
+import { toJS } from "mobx";
 
 export const Header = observer (() =>  {
 
@@ -16,6 +18,7 @@ export const Header = observer (() =>  {
 
     const [loadState, setLoadState] = useState(false);
     const [snackState, setSnackState] = useState(false);
+    const [languages, setLanguages] = useState(toJS(translate.languages));
 
     useEffect(() => {
         setLoadState(true);
@@ -27,6 +30,13 @@ export const Header = observer (() =>  {
             converterEvents.removeListener('changeLanguage', setLanguage);
         }
     }, []);
+
+    useEffect(() => {
+        if(languages.length === 0) {
+            translate.loadLanguages();
+            setLanguages(toJS(translate.languages));
+        }
+    }, [languages]);
 
     const setLanguage = (language) => {
         changeLanguage(language);
@@ -43,7 +53,7 @@ export const Header = observer (() =>  {
                 <div className='Container' style={{height: '100%'}}>
                     <div className={styles.HeaderContent}>
                         <Logo src="https://i.ibb.co/GcPksm5/money-exchange.png" alt="Logo"/>
-                        <Translate/>
+                        <Translate languages={languages}/>
                     </div>
                 </div>
             </header>

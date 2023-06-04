@@ -1,21 +1,11 @@
 'use client';
 
-import { memo, useEffect, useState } from "react";
+import { memo, } from "react";
 import { MenuItem, FormControl, InputLabel, Select } from "@mui/material";
-import translate from "@/mobx/store/translate";
 import { toJS } from "mobx";
 import { converterEvents } from "@/events";
 
-export const Translate = memo(() => {
-
-    const [languages, setLanguages] = useState(translate.languages);
-
-    useEffect(() => {
-        if(languages.length === 0) {
-            translate.loadLanguages();
-            setLanguages(toJS(translate.languages));
-        }
-    }, [languages]);
+export const Translate = memo(({languages}) => {
 
     const chooseLanguage = (language) => {
         converterEvents.emit('changeLanguage', language);
