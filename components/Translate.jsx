@@ -12,7 +12,7 @@ export const Translate = memo(({languages}) => {
     }
 
   return (
-    <FormControl sx={{ minWidth: 120, color: '#fff' }}  size="small">
+    <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  size="small">
         <InputLabel id="demo-select-small-label">lng</InputLabel>
         <Select labelId="demo-select-small-label" id="demo-select-small">
             {
