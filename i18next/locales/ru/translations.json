@@ -3,5 +3,6 @@
     "about-link": "О нас",
     "about-api-link": "О API",
     "login-link": "Войти",
-    "auth-link": "Регистрация"
+    "auth-link": "Регистрация",
+    "has-been-changed-lng": "Язык успешно был сменён на: русский"
 }

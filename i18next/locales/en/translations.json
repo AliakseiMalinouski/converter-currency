@@ -3,5 +3,6 @@
     "about-link": "About us",
     "about-api-link": "Currency API",
     "login-link": "Sign in",
-    "auth-link": "Sign up"
+    "auth-link": "Sign up",
+    "has-been-changed-lng": "The language has been successfully changed to English"
 }

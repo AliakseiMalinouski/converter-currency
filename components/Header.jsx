@@ -53,6 +53,7 @@ export const Header = observer (() =>  {
 
     const setLanguage = (language) => {
         changeLanguage(language);
+        translate.setLanguage(language);
         setSnackState(true);
     };
 

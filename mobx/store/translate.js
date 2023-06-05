@@ -4,6 +4,7 @@ import { makeAutoObservable, toJS } from "mobx";
 class Translate {
 
     languages = [];
+    currentLanguage = "";
 
     constructor() {
         makeAutoObservable(this);
@@ -18,6 +19,10 @@ class Translate {
 
     createError(type) {
         alert(`Error with ${type}`);
+    }
+
+    setLanguage (language) {
+        this.currentLanguage = language;
     }
 }
 
