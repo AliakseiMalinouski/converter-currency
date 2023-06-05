@@ -7,9 +7,11 @@ import styles from './Links.module.css';
 import { motion } from "framer-motion";
 import { appVariants } from "@/framer_motion/variant";
 
-export const Links = memo(({links}) => {
+export const Links = memo(({links, pathname}) => {
 
     let {t} = useTranslation();
+
+    console.log(pathname)
 
     return (
         <ul className={styles.Links}>
@@ -17,16 +19,16 @@ export const Links = memo(({links}) => {
                 links && links.map(({id, link, title}) => 
                 link === '/auth'
                 ?
-                <motion.li variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2}>
-                    <Link key={id} href={link} className={styles.AuthLink}>
+                <motion.li key={id} variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2}>
+                    <Link href={link} className={styles.AuthLink}>
                         {
                             t(`${title}`)
                         }
                     </Link>
                 </motion.li>
                 :
-                <motion.li variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2}>
-                    <Link key={id} href={link}>
+                <motion.li key={id} variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2}>
+                    <Link href={link} className={pathname === link ? styles.ActiveLink : ''}>
                         {
                             t(`${title}`)
                         }

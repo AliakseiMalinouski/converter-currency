@@ -13,10 +13,13 @@ import translate from "@/mobx/store/translate";
 import { toJS } from "mobx";
 import { Links } from "./Links";
 import getData from "@/helpers/getData";
+import { usePathname } from 'next/navigation';
 
 export const Header = observer (() =>  {
 
     let {t} = useTranslation();
+
+    let pathname = usePathname();
 
     const [loadState, setLoadState] = useState(false);
     const [snackState, setSnackState] = useState(false);
@@ -44,7 +47,7 @@ export const Header = observer (() =>  {
     useEffect(() => {
         if(!links.hasOwnProperty('data')) {
             const wrapperAsync = async () => {
-                let updatedLinks = await getData("https://gist.githubusercontent.com/AliakseiMalinouski/f226376ca13551b30e53786d6ea4271a/raw/56ce880d961b2b58e10a7d0a86fa9db0904513d3/linksConverter");
+                let updatedLinks = await getData("https://gist.githubusercontent.com/AliakseiMalinouski/f226376ca13551b30e53786d6ea4271a/raw/ffde16dd27e0d29ccc4d2807a61dd46b11be00c5/linksConverter");
                 setLinks(updatedLinks);
             }
             wrapperAsync();
@@ -57,7 +60,7 @@ export const Header = observer (() =>  {
         setSnackState(true);
     };
 
-    let memoLinks = useMemo(() => links && <Links links={links.data}/>, [links]);
+    let memoLinks = useMemo(() => links && <Links links={links.data} pathname={pathname}/>, [links, pathname]);
 
     if(!loadState) {
         return null;

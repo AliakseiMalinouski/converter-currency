@@ -4,5 +4,6 @@
     "about-api-link": "Currency API",
     "login-link": "Sign in",
     "auth-link": "Sign up",
-    "has-been-changed-lng": "The language has been successfully changed to English"
+    "has-been-changed-lng": "The language has been successfully changed to English",
+    "home-link": "Home"
 }

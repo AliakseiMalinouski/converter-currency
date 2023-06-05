@@ -4,5 +4,6 @@
     "about-api-link": "О API",
     "login-link": "Войти",
     "auth-link": "Регистрация",
-    "has-been-changed-lng": "Язык успешно был сменён на: русский"
+    "has-been-changed-lng": "Язык успешно был сменён на: русский",
+    "home-link": "Главная"
 }
