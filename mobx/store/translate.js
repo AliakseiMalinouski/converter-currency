@@ -24,6 +24,15 @@ class Translate {
     setLanguage (language) {
         this.currentLanguage = language;
     }
+
+    getCurrentLanguage () {
+        if(this.currentLanguage !== "") {
+            return this.currentLanguage;
+        } else {
+            this.setLanguage('en');
+            return 'en';
+        }
+    }
 }
 
 export default new Translate();
