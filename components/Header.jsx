@@ -47,7 +47,7 @@ export const Header = observer (() =>  {
     useEffect(() => {
         if(!links.hasOwnProperty('data')) {
             const wrapperAsync = async () => {
-                let updatedLinks = await getData("https://gist.githubusercontent.com/AliakseiMalinouski/f226376ca13551b30e53786d6ea4271a/raw/ffde16dd27e0d29ccc4d2807a61dd46b11be00c5/linksConverter");
+                let updatedLinks = await getData("https://gist.githubusercontent.com/AliakseiMalinouski/f226376ca13551b30e53786d6ea4271a/raw/5a6d20b93e839c14ce83fd1000563e943cdafa24/linksConverter");
                 setLinks(updatedLinks);
             }
             wrapperAsync();

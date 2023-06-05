@@ -19,7 +19,7 @@ export const Links = memo(({links, pathname}) => {
                 links && links.map(({id, link, title}) => 
                 link === '/auth'
                 ?
-                <motion.li key={id} variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2}>
+                <motion.li key={id} variants={appVariants.links} initial={'hidden'} animate={'visible'} custom={id / 2} viewport={{once: true}}>
                     <Link href={link} className={styles.AuthLink}>
                         {
                             t(`${title}`)
