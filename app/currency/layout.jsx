@@ -6,5 +6,5 @@ export const metadata = {
 }
 
 export default function CurrencyLayout({children}) {
-    return <>{children}</>
+    return <div className="Container">{children}</div>
 }
