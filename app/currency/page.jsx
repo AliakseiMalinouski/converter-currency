@@ -1,10 +1,10 @@
-import { Converter } from "@/components/Converter"
+import { CurrencyContent } from "@/components/CurrencyContent"
 
 export default function Currency () {
     return (
         <div className="Currency">
             <div className="Container">
-                <Converter/>
+                <CurrencyContent/>
             </div>
         </div>
     )

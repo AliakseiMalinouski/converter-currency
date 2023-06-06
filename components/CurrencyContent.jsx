@@ -9,30 +9,9 @@ import { observer } from "mobx-react-lite";
 
 export const CurrencyContent = observer(() => {
 
-    let {t} = useTranslation();
-
-    const [loadState, setLoadState] = useState(false);
-
-    useEffect(() => {
-        setLoadState(true);
-    }, []);
-
-    if(!loadState) {
-        return null;
-    }
-    else {
-        return (
-            <motion.div
-            variants={appVariants.currency}
-            initial={'hidden'}
-            animate={'visible'} 
-            >
-                <button onClick={() => currency.plus()}>plus</button ><button onClick={() => currency.minus()}>minus</button>
-                {
-                    currency.total
-                }
-                
-            </motion.div>
-        )
-    }
+    return (
+        <div>
+            currency
+        </div>
+    )
 })
