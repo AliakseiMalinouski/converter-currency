@@ -1,7 +1,7 @@
+import { ConverterContent } from "@/components/ConverterContent"
+
 export default function Converter () {
     return (
-        <div>
-            converter page
-        </div>
+        <ConverterContent/>
     )
 }
