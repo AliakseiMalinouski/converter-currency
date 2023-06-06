@@ -5,5 +5,6 @@
     "login-link": "Sign in",
     "auth-link": "Sign up",
     "has-been-changed-lng": "The language has been successfully changed to English",
-    "home-link": "Home"
+    "home-link": "Home",
+    "all-currency": "All currencies"
 }

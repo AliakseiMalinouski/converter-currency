@@ -1,9 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import { toJS } from "mobx";
+import { keysToArray } from "@/helpers/keysToArray";
 
 class Currency {
 
     standartValute = {};
+
+    arrayKeys = [];
 
     pair = {}
 
@@ -47,6 +50,19 @@ class Currency {
         .catch(error => {
             this.error = this.createError(404, 'Error in the pair currency enquiry', 'Pair', [firstValute, secondValute]);
         })
+    }
+
+    doMockRequest (randomCurrency) {
+        fetch(`https://v6.exchangerate-api.com/v6/5f6c169eb629a374b98a6f66/latest/${randomCurrency}`)
+        .then(response => {
+            if(response.ok) return response.json();
+            else this.createError(404, 'Failed mock request', 'Mock', randomCurrency);
+        })
+        .then(data => {
+            let array = keysToArray(toJS(data.conversion_rates));
+            this.arrayKeys = array;
+        })
+        .catch(error => this.createError(404, 'Failed mock request', 'Mock', randomCurrency))
     }
 
     createError(status, text, type, currency) {
