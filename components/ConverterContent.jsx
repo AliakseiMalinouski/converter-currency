@@ -12,6 +12,7 @@ import valutesStyles from './Valute.module.css';
 import { useState } from "react";
 import { ButtonCurrenciesLength } from "./ButtonCurrenciesLength";
 import { converterEvents } from "@/events";
+import { ConverterFilters } from "./ConverterFilters";
 
 export const ConverterContent = observer(() => {
 
@@ -57,8 +58,13 @@ export const ConverterContent = observer(() => {
             <div className={classes.ConverterContent}>
                 <Title text='all-currency'/>
                 <ButtonCurrenciesLength key={1} text='currencies-length-button'/>
-                <div className="ConverterTools">
-                    <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>
+                <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
+                    <div className={classes.ConverterFilters}>
+                        <ConverterFilters/>
+                    </div>
+                    <div className={classes.ConverterCurrencies}>
+                        <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>
+                    </div>
                 </div>
             </div>
         )
