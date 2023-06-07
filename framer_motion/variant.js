@@ -9,6 +9,9 @@ export const appVariants = {
                 delay: 0.3,
                 duration: 0.7
             }
+        },
+        exit: {
+            opacity: 0
         }
     },
     links: {
