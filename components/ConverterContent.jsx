@@ -13,7 +13,7 @@ import { useState } from "react";
 
 export const ConverterContent = observer(() => {
 
-    const [currencyLengthState, setCurrencyLengthState] = useState(false);
+    const [currencyLengthState, setCurrencyLengthState] = useState(null);
 
     let arrayCurrencies = currency.arrayKeys;
 
@@ -26,14 +26,16 @@ export const ConverterContent = observer(() => {
         transfromLengthOfArray();
     }
 
+
     const transfromLengthOfArray = useCallback(() => {
-        if(!currencyLengthState) {
+        if(!currencyLengthState && arrayCurrencies.length) {
             let tranformedArray = toJS(arrayCurrencies).filter(elem => elem.id < 24);
+            console.log(toJS(arrayCurrencies))
             return tranformedArray;
         } else {
            return toJS(arrayCurrencies);
         }
-    }, [currencyLengthState]);
+    }, [currencyLengthState, arrayCurrencies]);
 
     let currentArrayCurrencies = transfromLengthOfArray();
 
