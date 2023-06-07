@@ -7,9 +7,6 @@ import classes from './ConverterContent.module.css';
 
 export const ConverterFilters = () => {
 
-    const [firstCurrency, setFirstCurrency] = useState("");
-    const [secondCurrency, setSecondCurrency] = useState("");
-
     const {
         register,
         handleSubmit,
@@ -48,7 +45,7 @@ export const ConverterFilters = () => {
                 }
             })}
             />
-            <input type="text" maxLength={3} onChange={(eo) => setFirstCurrency(eo.target.value)}
+            <input type="text" maxLength={3}
             {...register('firstCurrency', {
                 required: 'This field 1 is required',
                 minLength: {
@@ -58,7 +55,7 @@ export const ConverterFilters = () => {
             })}
             />
             <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows"/>
-            <input type="text" maxLength={3} onChange={(eo) => setSecondCurrency(eo.target.value)} 
+            <input type="text" maxLength={3} 
             {...register('secondCurrency', {
                 required: 'This field 2 is required',
                 minLength: {

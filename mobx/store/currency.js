@@ -86,8 +86,6 @@ class Currency {
             conversion_rate
         } = data;
 
-        console.log(conversion_rate, amount)
-
         let conversionRateAfterMathAmount = amount * conversion_rate;
 
         this.resultAfterPair = conversionRateAfterMathAmount;
