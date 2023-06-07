@@ -26,14 +26,27 @@ export const ConverterContent = observer(() => {
 
     useEffect(() => {
         converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
+        converterEvents.addListener('startPairRequest', startPairRequest);
         return () => {
             converterEvents.removeListener('showAllCurrencies', viewAllCurrencies);
+            converterEvents.removeListener('startPairRequest', startPairRequest);
         }
     }, []);
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
         transfromLengthOfArray();
+    }
+
+    const startPairRequest = (data) => {
+        const {
+            firstCurrency,
+            secondCurrency,
+            amount
+        } = data;
+
+        currency.doPairRequest(firstCurrency, secondCurrency, amount);
+
     }
 
 
@@ -49,6 +62,8 @@ export const ConverterContent = observer(() => {
     let currentArrayCurrencies = transfromLengthOfArray();
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
+
+    console.log(toJS(currency.resultAfterPair))
 
     if(arrayCurrencies.length === 0) {
         return <Progress/>

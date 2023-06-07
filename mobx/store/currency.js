@@ -12,6 +12,10 @@ class Currency {
 
     error = {};
 
+    amount = null;
+
+    resultAfterPair = null;
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -34,7 +38,7 @@ class Currency {
         })
     }
 
-    doPairRequest(firstValute, secondValute) {
+    doPairRequest(firstValute, secondValute, amount) {
         fetch(`https://v6.exchangerate-api.com/v6/5f6c169eb629a374b98a6f66/pair/${firstValute}/${secondValute}`)
         .then(response => {
             if(response.ok) {
@@ -46,6 +50,8 @@ class Currency {
         })
         .then(data => {
             this.pair = toJS(data);
+            this.amount = amount;
+            this.mathPairAmount(data, amount);
         })
         .catch(error => {
             this.error = this.createError(404, 'Error in the pair currency enquiry', 'Pair', [firstValute, secondValute]);
@@ -73,6 +79,18 @@ class Currency {
             type: type || 'Request',
             currency: Array.isArray(currency) ? currency.join(",") : currency || 'No currency'
         }
+    }
+
+    mathPairAmount (data, amount) {
+        let {
+            conversion_rate
+        } = data;
+
+        console.log(conversion_rate, amount)
+
+        let conversionRateAfterMathAmount = amount * conversion_rate;
+
+        this.resultAfterPair = conversionRateAfterMathAmount;
     }
 }
 

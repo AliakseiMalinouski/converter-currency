@@ -33,7 +33,7 @@ export const ConverterFilters = () => {
             amount: parseInt(amount)
         }
         
-        console.log(newData)
+        converterEvents.emit('startPairRequest', newData);
 
     }
 
@@ -67,7 +67,7 @@ export const ConverterFilters = () => {
                 }
             })}
             />
-            <button type="submit"> 
+            <button type="submit" disabled={!isValid}> 
                 send
             </button>
         </form>
