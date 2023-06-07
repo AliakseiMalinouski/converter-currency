@@ -10,6 +10,8 @@ import { Progress } from "./Progress";
 import { Valute } from "./Valute";
 import valutesStyles from './Valute.module.css';
 import { useState } from "react";
+import { ButtonCurrenciesLength } from "./ButtonCurrenciesLength";
+import { converterEvents } from "@/events";
 
 export const ConverterContent = observer(() => {
 
@@ -21,6 +23,13 @@ export const ConverterContent = observer(() => {
         currency.doMockRequest('USD');
     }, []);
 
+    useEffect(() => {
+        converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
+        return () => {
+            converterEvents.removeListener('showAllCurrencies', viewAllCurrencies);
+        }
+    }, []);
+
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
         transfromLengthOfArray();
@@ -30,7 +39,6 @@ export const ConverterContent = observer(() => {
     const transfromLengthOfArray = useCallback(() => {
         if(!currencyLengthState && arrayCurrencies.length) {
             let tranformedArray = toJS(arrayCurrencies).filter(elem => elem.id < 24);
-            console.log(toJS(arrayCurrencies))
             return tranformedArray;
         } else {
            return toJS(arrayCurrencies);
@@ -48,7 +56,7 @@ export const ConverterContent = observer(() => {
         return (
             <div className={classes.ConverterContent}>
                 <Title text='all-currency'/>
-                <h4 onClick={viewAllCurrencies}>Open</h4>
+                <ButtonCurrenciesLength key={1} text='currencies-length-button'/>
                 <div className="ConverterTools">
                     <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>
                 </div>

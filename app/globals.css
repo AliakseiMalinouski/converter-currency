@@ -14,6 +14,7 @@ body {
   min-width: 100%;
   font-size: 16px;
   font-weight: 400;
+  overflow-y: scroll;
 }
 
 a {

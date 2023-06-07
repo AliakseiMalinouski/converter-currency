@@ -6,5 +6,6 @@
     "auth-link": "Регистрация",
     "has-been-changed-lng": "Язык успешно был сменён на: русский",
     "home-link": "Главная",
-    "all-currency": "Все валюты"
+    "all-currency": "Все валюты",
+    "currencies-length-button": "Показать все валюты"
 }
