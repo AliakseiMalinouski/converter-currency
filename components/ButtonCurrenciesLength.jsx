@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import styles from './ButtonCurrenciesLength.module.css';
 import { converterEvents } from "@/events";
 
-export const ButtonCurrenciesLength = memo(({text}) => {
+export const ButtonCurrenciesLength = memo(({text, currencyLengthState, textHide}) => {
 
     let {t} = useTranslation();
 
@@ -14,9 +14,21 @@ export const ButtonCurrenciesLength = memo(({text}) => {
 
     return (
         <div className={styles.Button} onClick={handleClick}>
-            <Button variant="contained">
-                {t(`${text}`)}
-            </Button>
+            {
+                currencyLengthState
+                ?
+                <Button variant="contained" color="success">
+                    {
+                        t(`${text}`)
+                    }
+                </Button>
+                :
+                <Button variant="contained">
+                    {
+                        t(`${textHide}`)
+                    }
+                </Button>
+            }
         </div>
     )
 })

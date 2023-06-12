@@ -7,5 +7,6 @@
     "has-been-changed-lng": "The language has been successfully changed to English",
     "home-link": "Home",
     "all-currency": "All currencies",
-    "currencies-length-button": "Show all currencies"
+    "currencies-length-button": "Show all currencies",
+    "hide-currencies": "Hide currencies"
 }

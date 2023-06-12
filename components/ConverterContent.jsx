@@ -16,7 +16,7 @@ import { ConverterFilters } from "./ConverterFilters";
 
 export const ConverterContent = observer(() => {
 
-    const [currencyLengthState, setCurrencyLengthState] = useState(null);
+    const [currencyLengthState, setCurrencyLengthState] = useState(false);
 
     let arrayCurrencies = currency.arrayKeys;
 
@@ -72,7 +72,7 @@ export const ConverterContent = observer(() => {
         return (
             <div className={classes.ConverterContent}>
                 <Title text='all-currency'/>
-                <ButtonCurrenciesLength key={1} text='currencies-length-button'/>
+                <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
                 <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
                     <div className={classes.ConverterFilters}>
                         <ConverterFilters/>
