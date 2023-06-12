@@ -63,7 +63,7 @@ export const ConverterContent = observer(() => {
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
 
-    console.log(currency.resultAfterPair)
+    console.log(toJS(currency.resultAfterPair))
     
     if(arrayCurrencies.length === 0) {
         return <Progress/>

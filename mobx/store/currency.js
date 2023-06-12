@@ -96,8 +96,13 @@ class Currency {
             target_code
         } = data;
 
-        let result = amount * conversion_rate;
-        this.resultAfterPair = result;
+        let result = {
+            counting: amount * conversion_rate,
+            from: base_code,
+            to: target_code,
+            state: true
+        }
+        this.resultAfterPair = toJS(result);
 
     }
 }
