@@ -96,23 +96,6 @@ class Currency {
             target_code
         } = data;
 
-        // BASE_CODE ВАЛЮТА, КОТОРУЮ МЕНЯЕМ
-        // TARGET_CODE ВАЛЮТА, КОТОРУЮ ПОЛУЧАЕМ
-        // CONVERSATION_RATE === TARGET_CODE
-
-        // if(type === 'default') {
-        //     console.log(type)
-        //     console.log(data)
-        //     let result = amount * conversion_rate;
-        //     this.resultAfterPair = result;
-        // }
-        // else if(type === 'changed') {
-        //     console.log(data)
-        //     console.log(type)
-        //     let result = amount / conversion_rate;
-        //     this.resultAfterPair = result;
-        // }
-
         let result = amount * conversion_rate;
         this.resultAfterPair = result;
 
