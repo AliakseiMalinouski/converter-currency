@@ -42,13 +42,13 @@ export const ConverterContent = observer(() => {
         const {
             firstCurrency,
             secondCurrency,
-            amount
+            amount,
+            currenciesPosition
         } = data;
 
-        currency.doPairRequest(firstCurrency, secondCurrency, amount);
+        currency.doPairRequest(firstCurrency, secondCurrency, amount, currenciesPosition);
 
     }
-
 
     const transfromLengthOfArray = useCallback(() => {
         if(!currencyLengthState && arrayCurrencies.length) {
@@ -63,8 +63,8 @@ export const ConverterContent = observer(() => {
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
 
-    console.log(toJS(currency.resultAfterPair))
-
+    console.log(currency.resultAfterPair)
+    
     if(arrayCurrencies.length === 0) {
         return <Progress/>
     }

@@ -21,6 +21,7 @@ class Currency {
     }
 
     doStandartRequest(currency) {
+        console.log(currency)
         fetch(`https://v6.exchangerate-api.com/v6/5f6c169eb629a374b98a6f66/latest/${currency}`)
         .then(response => {
             if(response.ok) {
@@ -38,7 +39,7 @@ class Currency {
         })
     }
 
-    doPairRequest(firstValute, secondValute, amount) {
+    doPairRequest(firstValute, secondValute, amount, type) {
         fetch(`https://v6.exchangerate-api.com/v6/5f6c169eb629a374b98a6f66/pair/${firstValute}/${secondValute}`)
         .then(response => {
             if(response.ok) {
@@ -51,10 +52,10 @@ class Currency {
         .then(data => {
             this.pair = toJS(data);
             this.amount = amount;
-            this.mathPairAmount(data, amount);
+            this.mathPairAmount(data, amount, type);
         })
         .catch(error => {
-            this.error = this.createError(404, 'Error in the pair currency enquiry', 'Pair', [firstValute, secondValute]);
+            this.error = this.createError(404, 'Error in the pair currency enquiry', 'Pair', [firstValute, secondValute], error);
         })
     }
 
@@ -71,8 +72,15 @@ class Currency {
         .catch(error => this.createError(404, 'Failed mock request', 'Mock', randomCurrency))
     }
 
-    createError(status, text, type, currency) {
+    createError(status, text, type, currency, error) {
         alert("Error with download data");
+        console.log({
+            status: status || 404,
+            text: text || 'Error with download data',
+            type: type || 'Request',
+            currency: Array.isArray(currency) ? currency.join(",") : currency || 'No currency',
+            error: error
+        })
         return {
             status: status || 404,
             text: text || 'Error with download data',
@@ -81,14 +89,33 @@ class Currency {
         }
     }
 
-    mathPairAmount (data, amount) {
+    mathPairAmount (data, amount, type) {
         let {
-            conversion_rate
+            conversion_rate,
+            base_code,
+            target_code
         } = data;
 
-        let conversionRateAfterMathAmount = amount * conversion_rate;
+        // BASE_CODE ВАЛЮТА, КОТОРУЮ МЕНЯЕМ
+        // TARGET_CODE ВАЛЮТА, КОТОРУЮ ПОЛУЧАЕМ
+        // CONVERSATION_RATE === TARGET_CODE
 
-        this.resultAfterPair = conversionRateAfterMathAmount;
+        // if(type === 'default') {
+        //     console.log(type)
+        //     console.log(data)
+        //     let result = amount * conversion_rate;
+        //     this.resultAfterPair = result;
+        // }
+        // else if(type === 'changed') {
+        //     console.log(data)
+        //     console.log(type)
+        //     let result = amount / conversion_rate;
+        //     this.resultAfterPair = result;
+        // }
+
+        let result = amount * conversion_rate;
+        this.resultAfterPair = result;
+
     }
 }
 
