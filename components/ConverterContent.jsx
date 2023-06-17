@@ -35,7 +35,6 @@ export const ConverterContent = observer(() => {
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
-        transfromLengthOfArray();
     }
 
     const startPairRequest = (data) => {
@@ -62,8 +61,6 @@ export const ConverterContent = observer(() => {
     let currentArrayCurrencies = transfromLengthOfArray();
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
-
-    console.log(toJS(currency.resultAfterPair))
     
     if(arrayCurrencies.length === 0) {
         return <Progress/>
