@@ -16,7 +16,7 @@ export const Valute = memo(({id, currency}) => {
         <AnimatePresence>
             <motion.li className={valutesStyles.Valute} key='currency' variants={appVariants.currency} initial={"hidden"} animate={'visible'} onClick={changeValute}
             >
-                {currency}
+            {currency}
             </motion.li>
         </AnimatePresence>
     )

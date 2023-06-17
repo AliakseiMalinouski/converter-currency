@@ -1,8 +1,6 @@
 'use client';
-import { Button } from "@mui/material";
 import { useState } from "react";
 import { converterEvents } from "@/events";
-import { useForm } from "react-hook-form";
 import classes from './ConverterContent.module.css';
 
 export const ConverterFilters = ({submitText, t, configForImage}) => {
@@ -15,22 +13,7 @@ export const ConverterFilters = ({submitText, t, configForImage}) => {
         amount: ''
     })
 
-    const {
-        register,
-        handleSubmit,
-        formState: {
-            errors,
-            isValid
-        }
-    } = useForm();
-
     const onSubmit = (eo) => {
-
-        // const {
-        //     firstCurrency,
-        //     secondCurrency,
-        //     amount
-        // } = data;
 
         eo.preventDefault();
 
@@ -60,8 +43,6 @@ export const ConverterFilters = ({submitText, t, configForImage}) => {
             setCurrenciesPosition('default');
         }
     }
-
-    console.log(configForImage)
 
     return (
         <form onSubmit={onSubmit}>
