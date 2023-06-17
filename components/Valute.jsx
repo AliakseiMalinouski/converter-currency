@@ -6,10 +6,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import {appVariants} from '../framer_motion/variant';
 import { converterEvents } from "@/events";
 
-export const Valute = memo(({id, currency}) => {
+export const Valute = memo(({id, currency, listNumber}) => {
 
     const changeValute = () => {
-        converterEvents.emit('changeValute', currency);
+        converterEvents.emit('changeValute', {
+            listNumber: listNumber,
+            currency: currency
+        });
     }
 
     return (

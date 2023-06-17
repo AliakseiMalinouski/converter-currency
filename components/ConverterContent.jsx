@@ -37,19 +37,19 @@ export const ConverterContent = observer(() => {
         converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
         converterEvents.addListener('startPairRequest', startPairRequest);
         converterEvents.addListener('animateImage', animateImageConvert);
-        converterEvents.addListener('changeValute', changeValuteParent);
+        // converterEvents.addListener('changeValute', changeValuteParent);
         return () => {
             converterEvents.removeListener('showAllCurrencies', viewAllCurrencies);
             converterEvents.removeListener('startPairRequest', startPairRequest);
             converterEvents.removeListener('animateImage', animateImageConvert);
-            converterEvents.removeListener('changeValute', changeValuteParent);
+            // converterEvents.removeListener('changeValute', changeValuteParent);
         }
     }, []);
     
-    const changeValuteParent = (act) => {
-        let array = toJS(currency.arrayInput);
-        if(array.length < 2) currency.addToInput(act);
-    }
+    // const changeValuteParent = (act) => {
+    //     let array = toJS(currency.arrayInput);
+    //     if(array.length < 2) currency.addToInput(act);
+    // }
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
@@ -90,6 +90,8 @@ export const ConverterContent = observer(() => {
         }
     }
 
+    console.log(resultAfterCounting)
+
     let currentArrayCurrencies = transfromLengthOfArray();
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
@@ -104,11 +106,11 @@ export const ConverterContent = observer(() => {
                 <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
                 <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
                     <div className={classes.ConverterFilters}>
-                        <ConverterFilters submitText='on-submit' t={t} configForImage={convertImageConfig} chosenValutes={inputsCurrencies.length > 0 ? inputsCurrencies : []}/>
+                        <ConverterFilters submitText='on-submit' currencies={currentArrayCurrencies} t={t} configForImage={convertImageConfig} chosenValutes={inputsCurrencies.length > 0 ? inputsCurrencies : []}/>
                     </div>
-                    <div className={classes.ConverterCurrencies}>
+                    {/* <div className={classes.ConverterCurrencies}>
                         <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

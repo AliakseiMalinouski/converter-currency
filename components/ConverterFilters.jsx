@@ -1,26 +1,59 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { converterEvents } from "@/events";
 import classes from './ConverterContent.module.css';
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Valute } from "./Valute";
 
-export const ConverterFilters = ({submitText, t, configForImage}) => {
+export const ConverterFilters = ({submitText, t, configForImage, currencies}) => {
 
     const [currenciesPosition, setCurrenciesPosition] = useState('default');
 
-    const [data, setData] = useState({
+    const [converterData, setData] = useState({
         firstCurrency: '',
         secondCurrency: '',
         amount: ''
     })
+
+    useEffect(() => {
+        converterEvents.addListener('changeValute', changeValuteParent);
+        return () => {
+            converterEvents.removeListener('changeValute', changeValuteParent);
+        }
+    }, []);
+
+    const viewError = () => {
+        alert('ERROR')
+    }
+
+    useEffect(() => {
+        if(converterData.firstCurrency !== '' && converterData.secondCurrency !== '' && converterData.firstCurrency === converterData.secondCurrency) {
+            viewError();
+        }
+    }, [converterData]);
+
+
+    const changeValuteParent = (data) => {
+        const {
+            listNumber, currency
+        } = data;
+
+        if(listNumber === 1) {
+            setData(prev => ({...prev, firstCurrency: currency}));
+        }
+        else if(listNumber === 2) {
+            setData(prev => ({...prev, secondCurrency: currency}));
+        }
+    }
 
     const onSubmit = (eo) => {
 
         eo.preventDefault();
 
         let newData = {
-            firstCurrency: data.firstCurrency.toUpperCase(),
-            secondCurrency: data.secondCurrency.toUpperCase(),
-            amount: parseInt(data.amount),
+            firstCurrency: converterData.firstCurrency.toUpperCase(),
+            secondCurrency: converterData.secondCurrency.toUpperCase(),
+            amount: parseInt(converterData.amount),
             currenciesPosition: currenciesPosition
         }
         
@@ -29,28 +62,29 @@ export const ConverterFilters = ({submitText, t, configForImage}) => {
     }
 
     const handleChange = (eo) => {
-        setData({...data, [eo.target.name]: eo.target.value});
-    }
-
-    const changeModeCurrencies = () => {
-        converterEvents.emit('animateImage', currenciesPosition);
-        if(currenciesPosition === 'default') {
-            setData(prev => ({...prev, firstCurrency: data.secondCurrency, secondCurrency: data.firstCurrency}));
-            setCurrenciesPosition('changed');
-        }
-        else if(currenciesPosition === 'changed') {
-            setData(prev => ({...prev, secondCurrency: data.firstCurrency, firstCurrency: data.secondCurrency}));
-            setCurrenciesPosition('default');
-        }
+        setData({...converterData, [eo.target.name]: eo.target.value});
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <input type="number" className={classes.Amount} name='amount' value={data.amount} onChange={handleChange}/>
-            <input type="text" maxLength={3} name="firstCurrency" value={data.firstCurrency} onChange={handleChange}/>
-            <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={changeModeCurrencies} className={configForImage.variant ? classes.ImageAnimationFirst : classes.ImageAnimationSecond}/>
-            <input type="text" name="secondCurrency" maxLength={3} value={data.secondCurrency} onChange={handleChange}/>
-            <button type="submit">{t(`${submitText}`)}</button>
-        </form>
+        <>
+            <input type="number" className={classes.Amount} name='amount' value={converterData.amount} onChange={handleChange}/>
+            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  size="small">
+                <InputLabel id="demo-select-small-label"/>
+                <Select labelid="demo-select-small-label" id="demo-select-small">
+                    {
+                        currencies.map(({id, currency}) => <Valute key={id} currency={currency} listNumber={1}/>)
+                    }
+                </Select>
+            </FormControl>
+            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  size="small">
+                <InputLabel id="demo-select-small-label"/>
+                <Select labelid="demo-select-small-label" id="demo-select-small">
+                    {
+                        currencies.map(({id, currency}) => <Valute key={id} currency={currency} listNumber={2}/>)
+                    }
+                </Select>
+            </FormControl>
+            <button onClick={onSubmit}>send</button>
+        </>
     )
 }
