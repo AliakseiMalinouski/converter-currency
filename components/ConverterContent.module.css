@@ -68,3 +68,29 @@
 .Amount {
     width: 150px !important;
 }
+
+.ImageAnimationFirst {
+    animation: imageFirst 0.5s linear;
+}
+
+@keyframes imageFirst {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(270deg);
+    }
+}
+
+.ImageAnimationSecond {
+    animation: imageSecond 0.5s linear;
+}
+
+@keyframes imageSecond {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-270deg);
+    }
+}

@@ -8,5 +8,6 @@
     "home-link": "Home",
     "all-currency": "All currencies",
     "currencies-length-button": "Show all currencies",
-    "hide-currencies": "Hide currencies"
+    "hide-currencies": "Hide currencies",
+    "on-submit": "Calculate"
 }

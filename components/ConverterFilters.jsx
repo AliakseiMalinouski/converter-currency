@@ -5,7 +5,7 @@ import { converterEvents } from "@/events";
 import { useForm } from "react-hook-form";
 import classes from './ConverterContent.module.css';
 
-export const ConverterFilters = () => {
+export const ConverterFilters = ({submitText, t, configForImage}) => {
 
     const [currenciesPosition, setCurrenciesPosition] = useState('default');
 
@@ -50,6 +50,7 @@ export const ConverterFilters = () => {
     }
 
     const changeModeCurrencies = () => {
+        converterEvents.emit('animateImage', currenciesPosition);
         if(currenciesPosition === 'default') {
             setData(prev => ({...prev, firstCurrency: data.secondCurrency, secondCurrency: data.firstCurrency}));
             setCurrenciesPosition('changed');
@@ -60,39 +61,15 @@ export const ConverterFilters = () => {
         }
     }
 
+    console.log(configForImage)
+
     return (
         <form onSubmit={onSubmit}>
-            <input type="number" className={classes.Amount} name='amount' value={data.amount} onChange={handleChange}
-            // {...register('amount', {
-            //     required: 'This field is required',
-            //     minLength: {
-            //         value: 1,
-            //         message: '>= 1'
-            //     }
-            // })}
-            />
-            <input type="text" maxLength={3} name="firstCurrency" value={data.firstCurrency} onChange={handleChange}
-            // {...register('firstCurrency', {
-            //     required: 'This field 1 is required',
-            //     minLength: {
-            //         value: 3,
-            //         message: 'short',
-            //     }
-            // })}
-            />
-            <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={changeModeCurrencies}/>
-            <input type="text" name="secondCurrency" maxLength={3} value={data.secondCurrency} onChange={handleChange}
-            // {...register('secondCurrency', {
-            //     required: 'This field 2 is required',
-            //     minLength: {
-            //         value: 3,
-            //         message: 'short'
-            //     }
-            // })}
-            />
-            <button type="submit" disabled={!isValid}> 
-                send
-            </button>
+            <input type="number" className={classes.Amount} name='amount' value={data.amount} onChange={handleChange}/>
+            <input type="text" maxLength={3} name="firstCurrency" value={data.firstCurrency} onChange={handleChange}/>
+            <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={changeModeCurrencies} className={configForImage.variant ? classes.ImageAnimationFirst : classes.ImageAnimationSecond}/>
+            <input type="text" name="secondCurrency" maxLength={3} value={data.secondCurrency} onChange={handleChange}/>
+            <button type="submit" disabled={!isValid}>{t(`${submitText}`)}</button>
         </form>
     )
 }
