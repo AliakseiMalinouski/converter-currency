@@ -70,7 +70,7 @@
 }
 
 .ImageAnimationFirst {
-    animation: imageFirst 0.5s linear;
+    animation: imageFirst 0.3s linear;
 }
 
 @keyframes imageFirst {
@@ -83,7 +83,7 @@
 }
 
 .ImageAnimationSecond {
-    animation: imageSecond 0.5s linear;
+    animation: imageSecond 0.3s linear;
 }
 
 @keyframes imageSecond {
