@@ -50,7 +50,7 @@ export const ConverterFilters = ({submitText, t, configForImage}) => {
             <input type="text" maxLength={3} name="firstCurrency" value={data.firstCurrency} onChange={handleChange}/>
             <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={changeModeCurrencies} className={configForImage.variant ? classes.ImageAnimationFirst : classes.ImageAnimationSecond}/>
             <input type="text" name="secondCurrency" maxLength={3} value={data.secondCurrency} onChange={handleChange}/>
-            <button type="submit" disabled={!isValid}>{t(`${submitText}`)}</button>
+            <button type="submit">{t(`${submitText}`)}</button>
         </form>
     )
 }
