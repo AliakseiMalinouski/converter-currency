@@ -10,9 +10,7 @@ import { appVariants } from "@/framer_motion/variant";
 export const Links = memo(({links, pathname}) => {
 
     let {t} = useTranslation();
-
-    console.log(pathname)
-
+    
     return (
         <ul className={styles.Links}>
             {

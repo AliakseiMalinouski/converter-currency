@@ -19,13 +19,13 @@ export const ButtonCurrenciesLength = memo(({text, currencyLengthState, textHide
                 ?
                 <Button variant="contained" color="success">
                     {
-                        t(`${text}`)
+                        t(`${textHide}`)
                     }
                 </Button>
                 :
                 <Button variant="contained">
                     {
-                        t(`${textHide}`)
+                        t(`${text}`)
                     }
                 </Button>
             }
