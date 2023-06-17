@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo } from "react";
+import { use, useCallback, useEffect, useMemo } from "react";
 import classes from './ConverterContent.module.css';
 import { Title } from "./Title";
 import currency from "@/mobx/store/currency";
@@ -19,26 +19,37 @@ export const ConverterContent = observer(() => {
 
     const [currencyLengthState, setCurrencyLengthState] = useState(false);
     const [convertImageConfig, setConvertImageConfig] = useState({});
+    const [chosenCurrencies, setChosenCurrencies] = useState([]);
 
     let {t} = useTranslation();
 
     let arrayCurrencies = currency.arrayKeys;
     let resultAfterCounting = toJS(currency.resultAfterPair);
+    let inputsCurrencies = toJS(currency.arrayInput);
 
     useEffect(() => {
         currency.doMockRequest('USD');
     }, []);
 
+    
+
     useEffect(() => {
         converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
         converterEvents.addListener('startPairRequest', startPairRequest);
         converterEvents.addListener('animateImage', animateImageConvert);
+        converterEvents.addListener('changeValute', changeValuteParent);
         return () => {
             converterEvents.removeListener('showAllCurrencies', viewAllCurrencies);
             converterEvents.removeListener('startPairRequest', startPairRequest);
-            converterEvents.addListener('animateImage', animateImageConvert);
+            converterEvents.removeListener('animateImage', animateImageConvert);
+            converterEvents.removeListener('changeValute', changeValuteParent);
         }
     }, []);
+    
+    const changeValuteParent = (act) => {
+        let array = toJS(currency.arrayInput);
+        if(array.length < 2) currency.addToInput(act);
+    }
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
@@ -55,6 +66,8 @@ export const ConverterContent = observer(() => {
         currency.doPairRequest(firstCurrency, secondCurrency, amount, currenciesPosition);
 
     }
+
+    console.log(toJS(currency.arrayInput))
 
     const transfromLengthOfArray = useCallback(() => {
         if(!currencyLengthState && arrayCurrencies.length) {
@@ -81,8 +94,6 @@ export const ConverterContent = observer(() => {
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
 
-    console.log(resultAfterCounting)
-
     if(arrayCurrencies.length === 0) {
         return <Progress/>
     }
@@ -93,7 +104,7 @@ export const ConverterContent = observer(() => {
                 <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
                 <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
                     <div className={classes.ConverterFilters}>
-                        <ConverterFilters submitText='on-submit' t={t} configForImage={convertImageConfig}/>
+                        <ConverterFilters submitText='on-submit' t={t} configForImage={convertImageConfig} chosenValutes={inputsCurrencies.length > 0 ? inputsCurrencies : []}/>
                     </div>
                     <div className={classes.ConverterCurrencies}>
                         <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>

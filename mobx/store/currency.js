@@ -16,6 +16,8 @@ class Currency {
 
     resultAfterPair = null;
 
+    arrayInput = [];
+
     constructor() {
         makeAutoObservable(this);
     }
@@ -104,6 +106,14 @@ class Currency {
         }
         this.resultAfterPair = toJS(result);
 
+    }
+
+    addToInput(currency) {
+        let flag = 0;
+        this.arrayInput.forEach(elem => {
+            if(elem === currency) flag = true;
+        })
+        if(!flag) this.arrayInput.push(currency);
     }
 }
 
