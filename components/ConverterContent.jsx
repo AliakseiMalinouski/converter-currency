@@ -19,6 +19,7 @@ export const ConverterContent = observer(() => {
     const [currencyLengthState, setCurrencyLengthState] = useState(false);
 
     let arrayCurrencies = currency.arrayKeys;
+    let resultAfterCounting = toJS(currency.resultAfterPair);
 
     useEffect(() => {
         currency.doMockRequest('USD');
@@ -61,7 +62,9 @@ export const ConverterContent = observer(() => {
     let currentArrayCurrencies = transfromLengthOfArray();
 
     let currenciesMemo = useMemo(() => currentArrayCurrencies && currentArrayCurrencies.map((elem, index) => <Valute key={elem?.id} currency={elem?.currency}/>), [currentArrayCurrencies]); 
-    
+
+    console.log(resultAfterCounting)
+
     if(arrayCurrencies.length === 0) {
         return <Progress/>
     }

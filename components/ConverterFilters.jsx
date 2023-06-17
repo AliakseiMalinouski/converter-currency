@@ -49,6 +49,17 @@ export const ConverterFilters = () => {
         setData({...data, [eo.target.name]: eo.target.value});
     }
 
+    const changeModeCurrencies = () => {
+        if(currenciesPosition === 'default') {
+            setData(prev => ({...prev, firstCurrency: data.secondCurrency, secondCurrency: data.firstCurrency}));
+            setCurrenciesPosition('changed');
+        }
+        else if(currenciesPosition === 'changed') {
+            setData(prev => ({...prev, secondCurrency: data.firstCurrency, firstCurrency: data.secondCurrency}));
+            setCurrenciesPosition('default');
+        }
+    }
+
     return (
         <form onSubmit={onSubmit}>
             <input type="number" className={classes.Amount} name='amount' value={data.amount} onChange={handleChange}
@@ -69,16 +80,7 @@ export const ConverterFilters = () => {
             //     }
             // })}
             />
-            <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={() => {
-                if(currenciesPosition === 'default') {
-                    setData(prev => ({...prev, firstCurrency: data.secondCurrency, secondCurrency: data.firstCurrency}));
-                    setCurrenciesPosition('changed');
-                }
-                else if(currenciesPosition === 'changed') {
-                    setData(prev => ({...prev, secondCurrency: data.firstCurrency, firstCurrency: data.secondCurrency}));
-                    setCurrenciesPosition('default');
-                }
-            }}/>
+            <img src="https://i.ibb.co/ZY7CFtf/cycle.png" alt="Arrows" onClick={changeModeCurrencies}/>
             <input type="text" name="secondCurrency" maxLength={3} value={data.secondCurrency} onChange={handleChange}
             // {...register('secondCurrency', {
             //     required: 'This field 2 is required',
