@@ -39,7 +39,7 @@ class Currency {
         })
     }
 
-    doPairRequest(firstValute, secondValute, amount, type) {
+    doPairRequest(firstValute, secondValute, amount) {
         fetch(`https://v6.exchangerate-api.com/v6/5f6c169eb629a374b98a6f66/pair/${firstValute}/${secondValute}`)
         .then(response => {
             if(response.ok) {
@@ -52,7 +52,7 @@ class Currency {
         .then(data => {
             this.pair = toJS(data);
             this.amount = amount;
-            this.mathPairAmount(data, amount, type);
+            this.mathPairAmount(data, amount);
         })
         .catch(error => {
             this.error = this.createError(404, 'Error in the pair currency enquiry', 'Pair', [firstValute, secondValute], error);
@@ -89,7 +89,7 @@ class Currency {
         }
     }
 
-    mathPairAmount (data, amount, type) {
+    mathPairAmount (data, amount) {
         let {
             conversion_rate,
             base_code,

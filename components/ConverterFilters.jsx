@@ -8,7 +8,6 @@ import { Snack } from "./Snack";
 
 export const ConverterFilters = ({t, currencies}) => {
 
-    const [currenciesPosition, setCurrenciesPosition] = useState('default');
     const [currencyNumberList, setCurrencyNumberList] = useState({
         currency: '',
         listNumber: null
@@ -63,8 +62,7 @@ export const ConverterFilters = ({t, currencies}) => {
         let newData = {
             firstCurrency: converterData.firstCurrency.toUpperCase(),
             secondCurrency: converterData.secondCurrency.toUpperCase(),
-            amount: parseInt(converterData.amount),
-            currenciesPosition: currenciesPosition
+            amount: parseInt(converterData.amount)
         }
         
         converterEvents.emit('startPairRequest', newData);

@@ -56,10 +56,9 @@ export const ConverterContent = observer(() => {
             firstCurrency,
             secondCurrency,
             amount,
-            currenciesPosition
         } = data;
 
-        currency.doPairRequest(firstCurrency, secondCurrency, amount, currenciesPosition);
+        currency.doPairRequest(firstCurrency, secondCurrency, amount);
 
     }
 
