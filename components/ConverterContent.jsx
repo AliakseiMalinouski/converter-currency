@@ -12,17 +12,17 @@ import { ButtonCurrenciesLength } from "./ButtonCurrenciesLength";
 import { converterEvents } from "@/events";
 import { ConverterFilters } from "./ConverterFilters";
 import { useTranslation } from "react-i18next";
+import { Snack } from "./Snack";
 
 export const ConverterContent = observer(() => {
 
     const [currencyLengthState, setCurrencyLengthState] = useState(false);
-    const [convertImageConfig, setConvertImageConfig] = useState({});
+    const [snackState, setSnackState] = useState(false);
 
     let {t} = useTranslation();
 
     let arrayCurrencies = currency.arrayKeys;
     let resultAfterCounting = toJS(currency.resultAfterPair);
-    let inputsCurrencies = toJS(currency.arrayInput);
 
     useEffect(() => {
         currency.doMockRequest('USD');
@@ -42,6 +42,13 @@ export const ConverterContent = observer(() => {
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
+        if(snackState === false) {
+            setSnackState(true);
+        }
+        else {
+            console.log('e')
+            setSnackState(false);
+        }
     }
 
     const startPairRequest = (data) => {
@@ -56,8 +63,6 @@ export const ConverterContent = observer(() => {
 
     }
 
-    console.log(toJS(currency.arrayInput))
-
     const transfromLengthOfArray = useCallback(() => {
         if(!currencyLengthState && arrayCurrencies.length) {
             let tranformedArray = toJS(arrayCurrencies).filter(elem => elem.id < 24);
@@ -67,7 +72,7 @@ export const ConverterContent = observer(() => {
         }
     }, [currencyLengthState, arrayCurrencies]);
 
-    console.log(resultAfterCounting)
+    // console.log(resultAfterCounting)
 
     let currentArrayCurrencies = transfromLengthOfArray();
 
@@ -77,15 +82,24 @@ export const ConverterContent = observer(() => {
     }
     else {
         return (
-            <div className={classes.ConverterContent}>
-                <Title text='all-currency'/>
-                <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
-                <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
-                    <div className={classes.ConverterFilters}>
-                        <ConverterFilters submitText='on-submit' currencies={currentArrayCurrencies} t={t} configForImage={convertImageConfig} chosenValutes={inputsCurrencies.length > 0 ? inputsCurrencies : []}/>
+            <>
+                <div className={classes.ConverterContent}>
+                    <Title text='all-currency'/>
+                    <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
+                    <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
+                        <div className={classes.ConverterFilters}>
+                            <ConverterFilters submitText='on-submit' currencies={currentArrayCurrencies} t={t}/>
+                        </div>
                     </div>
                 </div>
-            </div>
+                {
+                    !currencyLengthState 
+                    ?
+                    null
+                    :
+                    <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant={'all-currencies'}/>
+                }
+            </>
         )
     }
 })

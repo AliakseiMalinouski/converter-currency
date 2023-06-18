@@ -6,7 +6,7 @@ import { FormControl, InputLabel, MenuItem, Select, Button } from "@mui/material
 import { Valute } from "./Valute";
 import { Snack } from "./Snack";
 
-export const ConverterFilters = ({submitText, t, configForImage, currencies}) => {
+export const ConverterFilters = ({t, currencies}) => {
 
     const [currenciesPosition, setCurrenciesPosition] = useState('default');
     const [currencyNumberList, setCurrencyNumberList] = useState({

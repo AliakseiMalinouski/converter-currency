@@ -19,6 +19,15 @@ export const Snack = memo(({open, handleClose, autoHideDuration, variant, infoAb
             </Snackbar>
         )
     }
+    else if(variant === 'all-currencies') {
+        return (
+            <Snackbar open={open} onClose={handleClose} autoHideDuration={autoHideDuration}>
+                <Alert severity="success">
+                    {t('snack-all-currencies')}
+                </Alert>
+            </Snackbar>
+        )
+    }
     else {
         return (
             <Snackbar open={open} onClose={handleClose} autoHideDuration={autoHideDuration}>
