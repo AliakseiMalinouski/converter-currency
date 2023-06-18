@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import classes from './ConverterContent.module.css';
 import { Title } from "./Title";
 import currency from "@/mobx/store/currency";
@@ -13,8 +13,11 @@ import { converterEvents } from "@/events";
 import { ConverterFilters } from "./ConverterFilters";
 import { useTranslation } from "react-i18next";
 import { Snack } from "./Snack";
+import { CurrencyInfoConverter } from "./CurrencyInfoConverter";
 
 export const ConverterContent = observer(() => {
+
+    let filterDiv = useRef();
 
     const [currencyLengthState, setCurrencyLengthState] = useState(false);
     const [snackState, setSnackState] = useState(false);
@@ -28,8 +31,6 @@ export const ConverterContent = observer(() => {
         currency.doMockRequest('USD');
     }, []);
 
-    
-
     useEffect(() => {
         converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
         converterEvents.addListener('startPairRequest', startPairRequest);
@@ -38,7 +39,7 @@ export const ConverterContent = observer(() => {
             converterEvents.removeListener('startPairRequest', startPairRequest);
         }
     }, []);
-    
+
 
     const viewAllCurrencies = () => {
         setCurrencyLengthState(prev => !prev);
@@ -75,6 +76,7 @@ export const ConverterContent = observer(() => {
 
     let currentArrayCurrencies = transfromLengthOfArray();
 
+    console.log(filterDiv)
 
     if(arrayCurrencies.length === 0) {
         return <Progress/>
@@ -86,7 +88,7 @@ export const ConverterContent = observer(() => {
                     <Title text='all-currency'/>
                     <ButtonCurrenciesLength key={1} text='currencies-length-button' currencyLengthState={currencyLengthState} textHide='hide-currencies'/>
                     <div className={classes.ConverterFiltersAndCurrenciesWrapper}>
-                        <div className={classes.ConverterFilters}>
+                        <div className={classes.ConverterFilters} ref={filterDiv}>
                             <ConverterFilters submitText='on-submit' currencies={currentArrayCurrencies} t={t}/>
                         </div>
                     </div>
@@ -98,6 +100,7 @@ export const ConverterContent = observer(() => {
                     :
                     <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant={'all-currencies'}/>
                 }
+                <CurrencyInfoConverter/>
             </>
         )
     }
