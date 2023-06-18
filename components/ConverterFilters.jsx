@@ -4,10 +4,17 @@ import { converterEvents } from "@/events";
 import classes from './ConverterContent.module.css';
 import { FormControl, InputLabel, MenuItem, Select, Button } from "@mui/material";
 import { Valute } from "./Valute";
+import { Snack } from "./Snack";
 
 export const ConverterFilters = ({submitText, t, configForImage, currencies}) => {
 
     const [currenciesPosition, setCurrenciesPosition] = useState('default');
+    const [currencyNumberList, setCurrencyNumberList] = useState({
+        currency: '',
+        listNumber: null
+    });
+
+    const [snackState, setSnackState] = useState(false);
 
     const [converterData, setData] = useState({
         firstCurrency: '',
@@ -34,9 +41,12 @@ export const ConverterFilters = ({submitText, t, configForImage, currencies}) =>
 
 
     const changeValuteParent = (data) => {
+        setSnackState(true);
         const {
             listNumber, currency
         } = data;
+
+        setCurrencyNumberList(prev => ({...prev, currency: currency, listNumber: listNumber}));
 
         if(listNumber === 1) {
             setData(prev => ({...prev, firstCurrency: currency}));
@@ -89,6 +99,7 @@ export const ConverterFilters = ({submitText, t, configForImage, currencies}) =>
             <div onClick={onSubmit} className={classes.ConvertButton}>
                 <Button variant="contained" color="success" sx={{width: '100%'}}>send</Button>
             </div>
+            <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={1500} variant='currency' text={``} infoAboutChosenCurrency={currencyNumberList}/>
         </>
     )
 }

@@ -14,6 +14,7 @@ import { ButtonCurrenciesLength } from "./ButtonCurrenciesLength";
 import { converterEvents } from "@/events";
 import { ConverterFilters } from "./ConverterFilters";
 import { useTranslation } from "react-i18next";
+import { Snack } from "./Snack";
 
 export const ConverterContent = observer(() => {
 
