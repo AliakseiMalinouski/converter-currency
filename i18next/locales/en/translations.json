@@ -14,5 +14,6 @@
     "second-currency-hint": "Select the second currency",
     "first-currency": "First currency",
     "second-currency": "Second currency",
-    "amount-placeholder": "Amount"
+    "amount-placeholder": "Amount",
+    "snack-currency-text": "A numbered currency is selected: "
 }

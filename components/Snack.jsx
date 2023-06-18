@@ -14,7 +14,7 @@ export const Snack = memo(({open, handleClose, autoHideDuration, variant, infoAb
         return (
             <Snackbar open={open} onClose={handleClose} autoHideDuration={autoHideDuration}>
                 <Alert severity="success">
-                    выбрана валюта: {infoAboutChosenCurrency.currency}
+                    {t('snack-currency-text')} {infoAboutChosenCurrency.listNumber} &#8212; {infoAboutChosenCurrency.currency}
                 </Alert>
             </Snackbar>
         )

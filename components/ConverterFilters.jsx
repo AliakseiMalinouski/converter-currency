@@ -99,7 +99,7 @@ export const ConverterFilters = ({submitText, t, configForImage, currencies}) =>
             <div onClick={onSubmit} className={classes.ConvertButton}>
                 <Button variant="contained" color="success" sx={{width: '100%'}}>send</Button>
             </div>
-            <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={1500} variant='currency' text={``} infoAboutChosenCurrency={currencyNumberList}/>
+            <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant='currency' text={``} infoAboutChosenCurrency={currencyNumberList}/>
         </>
     )
 }

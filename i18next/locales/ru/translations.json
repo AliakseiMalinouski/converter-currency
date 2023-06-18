@@ -14,5 +14,6 @@
     "second-currency-hint": "Выберите вторую валюту",
     "first-currency": "Первая валюта",
     "second-currency": "Вторая валюта",
-    "amount-placeholder": "Количество"
+    "amount-placeholder": "Количество",
+    "snack-currency-text": "Выбрана валюта под номером: "
 }
