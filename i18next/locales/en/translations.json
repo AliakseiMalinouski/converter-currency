@@ -9,5 +9,10 @@
     "all-currency": "All currencies",
     "currencies-length-button": "Show all currencies",
     "hide-currencies": "Hide currencies",
-    "on-submit": "Calculate"
+    "on-submit": "Calculate",
+    "first-currency-hint": "Select the first currency",
+    "second-currency-hint": "Select the second currency",
+    "first-currency": "First currency",
+    "second-currency": "Second currency",
+    "amount-placeholder": "Amount"
 }

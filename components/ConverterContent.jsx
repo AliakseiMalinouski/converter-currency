@@ -108,9 +108,6 @@ export const ConverterContent = observer(() => {
                     <div className={classes.ConverterFilters}>
                         <ConverterFilters submitText='on-submit' currencies={currentArrayCurrencies} t={t} configForImage={convertImageConfig} chosenValutes={inputsCurrencies.length > 0 ? inputsCurrencies : []}/>
                     </div>
-                    {/* <div className={classes.ConverterCurrencies}>
-                        <ul className={valutesStyles.Valutes}>{currenciesMemo}</ul>
-                    </div> */}
                 </div>
             </div>
         )

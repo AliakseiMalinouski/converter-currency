@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { converterEvents } from "@/events";
 import classes from './ConverterContent.module.css';
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select, Button } from "@mui/material";
 import { Valute } from "./Valute";
 
 export const ConverterFilters = ({submitText, t, configForImage, currencies}) => {
@@ -67,24 +67,28 @@ export const ConverterFilters = ({submitText, t, configForImage, currencies}) =>
 
     return (
         <>
-            <input type="number" className={classes.Amount} name='amount' value={converterData.amount} onChange={handleChange}/>
-            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  size="small">
-                <InputLabel id="demo-select-small-label"/>
+            <input type="number" min={1} className={classes.Amount} name='amount' placeholder={t('amount-placeholder')} value={converterData.amount} onChange={handleChange}/>
+            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}} fullWidth>
+                <InputLabel id="demo-select-small-label">{t('first-currency')}</InputLabel>
                 <Select labelid="demo-select-small-label" id="demo-select-small">
                     {
                         currencies.map(({id, currency}) => <Valute key={id} currency={currency} listNumber={1}/>)
                     }
                 </Select>
             </FormControl>
-            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  size="small">
-                <InputLabel id="demo-select-small-label"/>
+            <div className={classes.HintCurrency}>{converterData.firstCurrency || t('first-currency-hint')}</div>
+            <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}}  fullWidth>
+                <InputLabel id="demo-select-small-label">{t('second-currency')}</InputLabel>
                 <Select labelid="demo-select-small-label" id="demo-select-small">
                     {
                         currencies.map(({id, currency}) => <Valute key={id} currency={currency} listNumber={2}/>)
                     }
                 </Select>
             </FormControl>
-            <button onClick={onSubmit}>send</button>
+            <div className={classes.HintCurrency}>{converterData.secondCurrency || t('second-currency-hint')}</div>
+            <div onClick={onSubmit} className={classes.ConvertButton}>
+                <Button variant="contained" color="success" sx={{width: '100%'}}>send</Button>
+            </div>
         </>
     )
 }

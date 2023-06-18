@@ -9,5 +9,10 @@
     "all-currency": "Все валюты",
     "currencies-length-button": "Показать все валюты",
     "hide-currencies": "Скрыть валюты",
-    "on-submit": "Рассчитать"
+    "on-submit": "Рассчитать",
+    "first-currency-hint": "Выберите первую валюту",
+    "second-currency-hint": "Выберите вторую валюту",
+    "first-currency": "Первая валюта",
+    "second-currency": "Вторая валюта",
+    "amount-placeholder": "Количество"
 }
