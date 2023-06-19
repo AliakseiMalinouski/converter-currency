@@ -41,5 +41,22 @@ export const appVariants = {
                 duration: 0.5
             }
         }
+    },
+    result: {
+        hidden: {
+            opacity: 0,
+            y: -500
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.1,
+                duration: 0.4
+            }
+        },
+        exit: {
+            opacity: 0
+        }
     }
 }

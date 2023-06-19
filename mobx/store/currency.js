@@ -14,7 +14,13 @@ class Currency {
 
     amount = null;
 
-    resultAfterPair = null;
+    resultAfterPair = {
+        counting: null,
+        from: "",
+        to: "",
+        state: false, 
+        price: ""
+    };
 
     constructor() {
         makeAutoObservable(this);
@@ -100,10 +106,16 @@ class Currency {
             counting: amount * conversion_rate,
             from: base_code,
             to: target_code,
-            state: true
+            state: true, 
+            price: conversion_rate
         }
         this.resultAfterPair = toJS(result);
 
+    }
+
+    closeResult (newState) {
+        console.log(newState)
+        this.resultAfterPair.state = !newState;
     }
 }
 

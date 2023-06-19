@@ -14,6 +14,7 @@ import { ConverterFilters } from "./ConverterFilters";
 import { useTranslation } from "react-i18next";
 import { Snack } from "./Snack";
 import { CurrencyInfoConverter } from "./CurrencyInfoConverter";
+import { AnimatePresence } from "framer-motion";
 
 export const ConverterContent = observer(() => {
 
@@ -34,9 +35,11 @@ export const ConverterContent = observer(() => {
     useEffect(() => {
         converterEvents.addListener('showAllCurrencies', viewAllCurrencies);
         converterEvents.addListener('startPairRequest', startPairRequest);
+        converterEvents.addListener('closeResult', closeResultParent);
         return () => {
             converterEvents.removeListener('showAllCurrencies', viewAllCurrencies);
             converterEvents.removeListener('startPairRequest', startPairRequest);
+            converterEvents.removeListener('closeResult', closeResultParent);
         }
     }, []);
 
@@ -72,7 +75,7 @@ export const ConverterContent = observer(() => {
         }
     }, [currencyLengthState, arrayCurrencies]);
 
-    console.log(resultAfterCounting)
+    const closeResultParent = (state) => currency.closeResult(state);
 
     let currentArrayCurrencies = transfromLengthOfArray();
 
@@ -100,7 +103,15 @@ export const ConverterContent = observer(() => {
                     :
                     <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant={'all-currencies'}/>
                 }
-                <CurrencyInfoConverter/>
+                {
+                    resultAfterCounting.state
+                    ?
+                    <AnimatePresence>
+                        <CurrencyInfoConverter resultAfterCounting={resultAfterCounting} t={t}/>
+                    </AnimatePresence>
+                    :
+                    null
+                }
             </>
         )
     }

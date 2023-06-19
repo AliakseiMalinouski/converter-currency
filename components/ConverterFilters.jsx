@@ -73,6 +73,8 @@ export const ConverterFilters = ({t, currencies}) => {
         
         converterEvents.emit('startPairRequest', newData);
 
+        clearFilters();
+
     }
 
     const handleChange = (eo) => {
@@ -112,7 +114,7 @@ export const ConverterFilters = ({t, currencies}) => {
             <div onClick={!buttonState ? onSubmit : null} className={classes.ConvertButton}>
                 <Button variant="contained" color="success" disabled={buttonState} sx={{width: '100%'}}>send</Button>
             </div>
-            <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant='currency' text={``} infoAboutChosenCurrency={currencyNumberList}/>
+            <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant='currency' infoAboutChosenCurrency={currencyNumberList}/>
         </>
     )
 }

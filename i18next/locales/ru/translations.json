@@ -17,5 +17,9 @@
     "amount-placeholder": "Количество",
     "snack-currency-text": "Выбрана валюта под номером: ",
     "snack-all-currencies": "Включено отображение всех валют в полях выбора",
-    "clear-filters": "Очистить фильтры"
+    "clear-filters": "Очистить фильтры",
+    "result": "Результат: ",
+    "amount": "Количество: ",
+    "price": "Цена: ",
+    "close-result": "Закрыть результаты"
 }
