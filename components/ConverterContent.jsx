@@ -72,7 +72,7 @@ export const ConverterContent = observer(() => {
         }
     }, [currencyLengthState, arrayCurrencies]);
 
-    // console.log(resultAfterCounting)
+    console.log(resultAfterCounting)
 
     let currentArrayCurrencies = transfromLengthOfArray();
 

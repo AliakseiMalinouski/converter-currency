@@ -14,6 +14,7 @@ export const ConverterFilters = ({t, currencies}) => {
     });
 
     const [snackState, setSnackState] = useState(false);
+    const [buttonState, setButtonState] = useState(false);
 
     const [converterData, setData] = useState({
         firstCurrency: '',
@@ -36,6 +37,11 @@ export const ConverterFilters = ({t, currencies}) => {
         if(converterData.firstCurrency !== '' && converterData.secondCurrency !== '' && converterData.firstCurrency === converterData.secondCurrency) {
             viewError();
         }
+    }, [converterData]);
+
+    useEffect(() => {
+        if(converterData.firstCurrency === '' || converterData.secondCurrency === '') setButtonState(true);
+        else setButtonState(false);
     }, [converterData]);
 
 
@@ -73,8 +79,17 @@ export const ConverterFilters = ({t, currencies}) => {
         setData({...converterData, [eo.target.name]: eo.target.value});
     }
 
+    const clearFilters = () => {
+        setData({
+            firstCurrency: '',
+            secondCurrency: '',
+            amount: ''
+        });
+    }
+
     return (
         <>
+            <Button onClick={clearFilters} variant="outlined" color="error" sx={{width: '200px', margin: '0 auto'}}>{t("clear-filters")}</Button>
             <input type="number" min={1} className={classes.Amount} name='amount' placeholder={t('amount-placeholder')} value={converterData.amount} onChange={handleChange}/>
             <FormControl sx={{ minWidth: 120, background: '#EFF0F5', borderRadius: '6px'}} fullWidth>
                 <InputLabel id="demo-select-small-label">{t('first-currency')}</InputLabel>
@@ -94,8 +109,8 @@ export const ConverterFilters = ({t, currencies}) => {
                 </Select>
             </FormControl>
             <div className={classes.HintCurrency}>{converterData.secondCurrency || t('second-currency-hint')}</div>
-            <div onClick={onSubmit} className={classes.ConvertButton}>
-                <Button variant="contained" color="success" sx={{width: '100%'}}>send</Button>
+            <div onClick={!buttonState ? onSubmit : null} className={classes.ConvertButton}>
+                <Button variant="contained" color="success" disabled={buttonState} sx={{width: '100%'}}>send</Button>
             </div>
             <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant='currency' text={``} infoAboutChosenCurrency={currencyNumberList}/>
         </>

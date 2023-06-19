@@ -78,6 +78,7 @@
     padding-left: 15px;
     cursor: pointer;
     color: #606062;
+    margin-top: 30px;
 }
 
 .Amount:focus {

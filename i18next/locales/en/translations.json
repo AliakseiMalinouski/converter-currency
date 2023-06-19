@@ -16,5 +16,6 @@
     "second-currency": "Second currency",
     "amount-placeholder": "Amount",
     "snack-currency-text": "A numbered currency is selected: ",
-    "snack-all-currencies": "Display of all currencies in selection fields enabled"
+    "snack-all-currencies": "Display of all currencies in selection fields enabled",
+    "clear-filters": "Clear the filters"
 }
