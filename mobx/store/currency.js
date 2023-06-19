@@ -19,7 +19,8 @@ class Currency {
         from: "",
         to: "",
         state: false, 
-        price: ""
+        price: "",
+        amount: ""
     };
 
     constructor() {
@@ -107,7 +108,8 @@ class Currency {
             from: base_code,
             to: target_code,
             state: true, 
-            price: conversion_rate
+            price: conversion_rate,
+            amount: amount
         }
         this.resultAfterPair = toJS(result);
 

@@ -21,5 +21,6 @@
     "result": "Result: ",
     "amount": "Amount: ",
     "price": "Price: ",
-    "close-result": "Close results"
+    "close-result": "Close results",
+    "convert": "Count"
 }

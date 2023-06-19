@@ -20,7 +20,7 @@ export const ConverterFilters = ({t, currencies}) => {
         firstCurrency: '',
         secondCurrency: '',
         amount: ''
-    })
+    });
 
     useEffect(() => {
         converterEvents.addListener('changeValute', changeValuteParent);
@@ -112,7 +112,7 @@ export const ConverterFilters = ({t, currencies}) => {
             </FormControl>
             <div className={classes.HintCurrency}>{converterData.secondCurrency || t('second-currency-hint')}</div>
             <div onClick={!buttonState ? onSubmit : null} className={classes.ConvertButton}>
-                <Button variant="contained" color="success" disabled={buttonState} sx={{width: '100%'}}>send</Button>
+                <Button variant="contained" color="success" disabled={buttonState} sx={{width: '100%'}}>{t('convert')}</Button>
             </div>
             <Snack open={snackState} handleClose={() => setSnackState(false)} autoHideDuration={3000} variant='currency' infoAboutChosenCurrency={currencyNumberList}/>
         </>

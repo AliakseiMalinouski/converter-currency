@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { Snack } from "./Snack";
 import { CurrencyInfoConverter } from "./CurrencyInfoConverter";
 import { AnimatePresence } from "framer-motion";
+import coordinates from "@/mobx/store/coordinates";
 
 export const ConverterContent = observer(() => {
 
@@ -27,6 +28,7 @@ export const ConverterContent = observer(() => {
 
     let arrayCurrencies = currency.arrayKeys;
     let resultAfterCounting = toJS(currency.resultAfterPair);
+    let currentCoordinates = coordinates.coordinates;
 
     useEffect(() => {
         currency.doMockRequest('USD');
@@ -56,6 +58,9 @@ export const ConverterContent = observer(() => {
     }
 
     const startPairRequest = (data) => {
+
+        coordinates.setCoordinates(filterDiv.current.getBoundingClientRect());
+
         const {
             firstCurrency,
             secondCurrency,
@@ -78,8 +83,6 @@ export const ConverterContent = observer(() => {
     const closeResultParent = (state) => currency.closeResult(state);
 
     let currentArrayCurrencies = transfromLengthOfArray();
-
-    console.log(filterDiv)
 
     if(arrayCurrencies.length === 0) {
         return <Progress/>
@@ -107,7 +110,7 @@ export const ConverterContent = observer(() => {
                     resultAfterCounting.state
                     ?
                     <AnimatePresence>
-                        <CurrencyInfoConverter resultAfterCounting={resultAfterCounting} t={t}/>
+                        <CurrencyInfoConverter resultAfterCounting={resultAfterCounting} t={t} currentCoordinates={currentCoordinates}/>
                     </AnimatePresence>
                     :
                     null
