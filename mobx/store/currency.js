@@ -114,7 +114,6 @@ class Currency {
     }
 
     closeResult (newState) {
-        console.log(newState)
         this.resultAfterPair.state = !newState;
     }
 }
