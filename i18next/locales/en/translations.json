@@ -22,5 +22,15 @@
     "amount": "Amount: ",
     "price": "Price: ",
     "close-result": "Close results",
-    "convert": "Count"
+    "convert": "Count",
+    "about-us-title": "About us",
+    "paragraph-about-us": "The online currency converter is a tool that allows you to calculate the current exchange rates of all currencies around the world today. Expand. All exchange rate conversions are based on the value of the currencies as reported by ExchangeRate. Data on international currency exchange rates is updated every minute",
+    "currency-api-title": "About API",
+    "currency-api-text": "Getting currency conversion data by API has been made easy since ExchangeRate-API was launched in 2010. Since then our service has responded to many billions of requests sent by tens of thousands of developers. Our exchange rate API's high uptime and reliable currency data are now a trusted choice - give our service a try!",
+    "go-to-api-info": "More",
+    "open": "Open",
+    "documentation": "Documentation",
+    "support": "Support", 
+    "standart": "Standart",
+    "product": "Product"
 }

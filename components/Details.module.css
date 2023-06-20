@@ -1,0 +1,46 @@
+.Details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Details h4 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.Details div {
+    margin-top: 20px;
+}
+.Details a {
+    display: block;
+    width: 150px;
+    border: none;
+    font-size: 16px;
+    background: rgb(0, 108, 224);
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: background 0.3s ease 0s;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.LinkDetails {
+    display: block;
+    width: 170px;
+    border: none;
+    font-size: 16px;
+    background: rgb(0, 108, 224);
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: background 0.3s ease 0s;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+}

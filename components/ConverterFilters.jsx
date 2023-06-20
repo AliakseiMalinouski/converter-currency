@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { converterEvents } from "@/events";
 import classes from './ConverterContent.module.css';
-import { FormControl, InputLabel, MenuItem, Select, Button } from "@mui/material";
+import { FormControl, InputLabel, Select, Button } from "@mui/material";
 import { Valute } from "./Valute";
 import { Snack } from "./Snack";
 
