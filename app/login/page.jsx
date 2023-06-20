@@ -1,7 +1,7 @@
+import { LoginContent } from "@/components/LoginContent"
+
 export default function Login () {
     return (
-        <div>
-            login page
-        </div>
+        <LoginContent/>
     )
 }

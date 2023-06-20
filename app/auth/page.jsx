@@ -1,9 +1,7 @@
-
+import { AuthContent } from "@/components/AuthContent"
 
 export default function Auth () {
     return (
-        <div>
-            auth page
-        </div>
+        <AuthContent/>
     )
 }
